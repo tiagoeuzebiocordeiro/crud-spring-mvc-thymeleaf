@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Add Employee</title>
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"> <!--  For notifications -->
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> <!--  Bootstrap requires jquery and toastr to run -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> <!--  We will not use this (atm) -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script> <!--  need it to run toastr -->
+
+</head>
+<body>
+
+	<h1 class="p-3">Add Employee</h1>
+<!--  FORM STARTS HERE -->
+	<form th:action="@{/saveEmployee}" th:object="${employee}" method="post">
+		
+		<!--  NAME -->
+		
+		<div class="row">
+		
+			<div class="form-group col-md-12">
+			<label class="col-md-3">Employee Name</label>
+			<div class="col-md-6">		
+				<input type="text" th:field="*{name}" class="form-control input-sm" required="required">
+			</div>
+			</div>
+		</div>
+	
+	<!-- NAME FIELD END -->
+	
+	
+	<!--  SALARY -->
+	
+	<div class="row">
+		
+			<div class="form-group col-md-12">
+			<label class="col-md-3">Employee Salary</label>
+			<div class="col-md-6">		
+				<input type="number" th:field="*{salary}" class="form-control input-sm" required="required">
+			</div>
+			</div>
+		</div>
+	
+	<!--  SALARY FIELD END -->
+	
+	<!--  DATE OF BIRTH -->
+	
+	<div class="row">
+		
+			<div class="form-group col-md-12">
+			<label class="col-md-3">Employee Date Of Birth</label>
+			<div class="col-md-6">		
+				<input type="date" th:field="*{dateOfBirth}" class="form-control input-sm" required="required">
+			</div>
+			</div>
+		</div>
+	
+	<!--  DATE OF BIRTH FIELD END -->
+	
+	
+	<!--  EMAIL -->
+	
+	<div class="row">
+		
+			<div class="form-group col-md-12">
+			<label class="col-md-3">Employee Email</label>
+			<div class="col-md-6">		
+				<input type="email" th:field="*{email}" class="form-control input-sm" required="required">
+			</div>
+			</div>
+		</div>
+		
+		<!--  EMAIL FIELD END -->
+		
+		
+		<!-- SEX -->
+		<div class="row">
+		
+			<div class="form-group col-md-12">
+			<label class="col-md-3">Employee Sex</label>
+			<div class="col-md-6">
+			
+					<div class="form-check-inline">
+						<label class="form-check-label">
+							<input type="radio" class="form-check-input" th:field="*{sex}" value="Male">Male
+						</label>
+					</div>
+					
+					<div class="form-check-inline">
+						<label class="form-check-label">
+							<input type="radio" class="form-check-input" th:field="*{sex}" value="Female">Female
+						</label>
+					</div>
+					
+					
+				</div>
+			</div>
+		
+		<!--  submit button -->
+			<div class="row pl-5">
+				<button type="submit" class="btn btn-success">Create</button>
+			</div>
+		
+		
+		</div>
+		<!--  SEX FIELD END -->
+	
+	
+	</form>
+<!--  FORM END -->
+</body>
+</html>
