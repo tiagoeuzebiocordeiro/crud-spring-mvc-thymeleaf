@@ -46,12 +46,16 @@ public class EmployeeService {
 		repository.deleteById(id);
 		
 		if (repository.findById(id) != null) {
-			return false;
+			return true;
 		}
 		
-		return true;
+		return false;
 		
 	}
 	
+	
+	public List<Employee> searchByName(String name) {
+		return repository.findByName(name);
+	}
 	
 }

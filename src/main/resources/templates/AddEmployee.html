@@ -105,6 +105,11 @@
 				<button type="submit" class="btn btn-success">Create</button>
 			</div>
 		
+		<div class="row pl-5">
+		
+			<a class="btn btn-secondary" href="/viewEmployees" role="button">Get Back</a>
+			
+		</div>
 		
 		</div>
 		<!--  SEX FIELD END -->
@@ -118,15 +123,15 @@
 	window.onload = function() {
 	
 		var msg = [[${message}]];
-		if (msg == "Failed to save the Employee") {
+		if (msg == "Save Failed") {
 		
-			Command: toastr.error("Failed to save the Employee")
+			Command: toastr.error("Failed to save the Employee!")
 
 			toastr.options = {
-			  "closeButton": false,
+			  "closeButton": true,
 			  "debug": false,
 			  "newestOnTop": false,
-			  "progressBar": false,
+			  "progressBar": true,
 			  "positionClass": "toast-top-right",
 			  "preventDuplicates": false,
 			  "onclick": null,

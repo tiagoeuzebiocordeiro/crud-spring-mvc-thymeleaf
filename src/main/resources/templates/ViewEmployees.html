@@ -17,8 +17,17 @@
 	<div class="container">
 	
 		<h1 class="p-3">Employees List</h1>
+
+		<form action="searchemployee" method="post">
+		
+			<label>Search by Employee's Name</label>
+			<input name="namesearch">
+			<input type="submit" value="Search">
+		</form>                   
 	
 	
+	                   
+	        
 		<table class="table table-bordered">
 		
 			<tr>
@@ -37,8 +46,8 @@
 			
 				<td th:text="${employee.id}">Employee ID here</td>
 				<td th:text="${employee.name}">Employee Name here</td>
-				<td th:text="${employee.salary}">Employee Salary here</td>
-				<td th:text="${employee.dateOfBirth}">Employee DOB here</td>
+				<td th:text="'$' + ${#numbers.formatDecimal(employee.salary, 0, 'COMMA', 2, 'POINT')}">Employee Salary here</td>
+				<td th:text="${#dates.format(employee.dateOfBirth, 'MM/dd/yyyy')}" >Employee DOB here</td>
 				<td th:text="${employee.email}">Employee Email here</td>
 				<td th:text="${employee.sex}">Employee Sex here</td>
 				<td>
@@ -67,29 +76,31 @@
 	window.onload = function() {
 	
 		var msg = [[${message}]];
-		if (msg == "Employee successfully saved") {
+		if (msg == "Save Success") {
 		
-			Command: toastr.success("Employee successfully saved")
+			Command: toastr.success("Employee successfully saved!")
 			
-			} else if (msg == "Employee has been deleted") { 
+			} else if (msg == "Delete Success") { 
 			
-				Command: toastr.success("Employee has been deleted")
+				Command: toastr.success("The employee has been deleted!")
 				
-			} else if (msg == "Failed to delete the Employee") {
+			} else if (msg == "Delete Failed") {
 			
-				Commad: toastr.error("Failed to delete the Employee")
+				Commad: toastr.error("Failed to delete the Employee!")
 				
 				
-			} else if (msg == "The employee has been edited") {
+			} else if (msg == "Edit Success") {
 			
-				Command: toastr.success("The employee has been edited")
+				Command: toastr.success("The employee has been edited!")
 			}
 
+			console.log(msg);
+		
 			toastr.options = {
-			  "closeButton": false,
+			  "closeButton": true,
 			  "debug": false,
 			  "newestOnTop": false,
-			  "progressBar": false,
+			  "progressBar": true,
 			  "positionClass": "toast-top-right",
 			  "preventDuplicates": false,
 			  "onclick": null,
