@@ -45,7 +45,7 @@ public class EmployeeService {
 		
 		repository.deleteById(id);
 		
-		if (getEmployeeId(id) != null) {
+		if (repository.findById(id) != null) {
 			return false;
 		}
 		

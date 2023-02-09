@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="ISO-8859-1">
+	<title>View Employees</title>
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"> <!--  For notifications -->
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> <!--  Bootstrap requires jquery and toastr to run -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> <!--  We will not use this (atm) -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script> <!--  need it to run toastr -->
+
+</head>
+<body>
+
+	<div class="container">
+	
+		<h1 class="p-3">Employees List</h1>
+	
+	
+		<table class="table table-bordered">
+		
+			<tr>
+			
+				<th>ID</th>
+				<th>Name</th>
+				<th>Salary</th>
+				<th>Date of Birth</th>
+				<th>E-mail</th>
+				<th>Sex</th>	
+				<th>Edit</th>
+				<th>Delete</th>
+			</tr>
+			
+			<tr th:each="employee : ${employeeList}">
+			
+				<td th:text="${employee.id}">Employee ID here</td>
+				<td th:text="${employee.name}">Employee Name here</td>
+				<td th:text="${employee.salary}">Employee Salary here</td>
+				<td th:text="${employee.dateOfBirth}">Employee DOB here</td>
+				<td th:text="${employee.email}">Employee Email here</td>
+				<td th:text="${employee.sex}">Employee Sex here</td>
+				<td>
+					
+					<a class="btn btn-warning" th:href="@{/editEmployee/{id} (id=${employee.id}) }">Edit</a>
+				
+				</td>
+				
+				<td>
+					
+					<a class="btn btn-danger" th:href="@{/deleteEmployee/{id} (id=${employee.id}) }">Delete</a>
+
+				
+				</td>
+			
+			</tr>
+		
+		</table>
+	
+		<a class="btn btn-primary btn-block" href="/addEmployee">Add New Employee</a>
+	
+	</div>
+
+<script th:inline="javascript"> 
+
+	window.onload = function() {
+	
+		var msg = [[${message}]];
+		if (msg == "Employee successfully saved") {
+		
+			Command: toastr.success("Employee successfully saved")
+			
+			} else if (msg == "Employee has been deleted") { 
+			
+				Command: toastr.success("Employee has been deleted")
+				
+			} else if (msg == "Failed to delete the Employee") {
+			
+				Commad: toastr.error("Failed to delete the Employee")
+				
+				
+			} else if (msg == "The employee has been edited") {
+			
+				Command: toastr.success("The employee has been edited")
+			}
+
+			toastr.options = {
+			  "closeButton": false,
+			  "debug": false,
+			  "newestOnTop": false,
+			  "progressBar": false,
+			  "positionClass": "toast-top-right",
+			  "preventDuplicates": false,
+			  "onclick": null,
+			  "showDuration": "300",
+			  "hideDuration": "1000",
+			  "timeOut": "5000",
+			  "extendedTimeOut": "1000",
+			  "showEasing": "swing",
+			  "hideEasing": "linear",
+			  "showMethod": "fadeIn",
+			  "hideMethod": "fadeOut"
+	
+		}
+	
+	}
+
+
+</script>
+
+</body>
+</html>

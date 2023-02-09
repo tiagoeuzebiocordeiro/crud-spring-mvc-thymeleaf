@@ -22,12 +22,12 @@ public class EmployeeController {
 	
 	
 	@GetMapping({"/", "/viewEmployees"})
-	public String viewEmployees(String message, Model model) {
+	public String viewEmployees(@ModelAttribute("message") String message, Model model) {
 		
 		List<Employee> employeeList = service.listAllEmployees();
 		model.addAttribute("employeeList", employeeList);
 		model.addAttribute("message", message);
-		return "ViewEmployee";
+		return "ViewEmployees";
 	}
 		
 	@GetMapping("/addEmployee")

@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="ISO-8859-1">
-	<title>Add Employee</title>
+	<title>Edit Employee</title>
 	
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"> <!--  For notifications -->
@@ -14,9 +14,11 @@
 </head>
 <body>
 
-	<h1 class="p-3">Add Employee</h1>
+	<h1 class="p-3">Edit Employee</h1>
 <!--  FORM STARTS HERE -->
-	<form th:action="@{/saveEmployee}" th:object="${employee}" method="post">
+	<form th:action="@{/editSaveEmployee}" th:object="${emp}" method="post">
+		
+		<input type="hidden" th:field="*{id}">
 		
 		<!--  NAME -->
 		
@@ -102,7 +104,7 @@
 		
 		<!--  submit button -->
 			<div class="row pl-5">
-				<button type="submit" class="btn btn-success">Create</button>
+				<button type="submit" class="btn btn-success">Update</button>
 			</div>
 		
 		
@@ -118,9 +120,9 @@
 	window.onload = function() {
 	
 		var msg = [[${message}]];
-		if (msg == "Failed to save the Employee") {
+		if (msg == "Failed to edit the Employee") {
 		
-			Command: toastr.error("Failed to save the Employee")
+			Command: toastr.error("Failed to edit the Employee")
 
 			toastr.options = {
 			  "closeButton": false,
